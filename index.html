@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="shortcut icon" href="./image/icon.png">
+	<title>2048</title>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="about">
+			<div class="about__name">Курсовая работа от: Бондаря Сергея.</div>
+			<div class="about__text">Цель моей курсовой была создание игры по средствам JavaScript.
+				С задачей я справился и воссоздал клон игры под названием 2048. <br>
+				Смысл игры состоит в том, чтобы складывать плитки начинай с двух (2 2, 2 4, 4 4) и с каждым ходом на поле добавляется новая плитка со значение 2 или 4. <br> Таким образом вам предстоит путь чтобы сделать плитку со значением 2048. <br> *Управление в игре осуществляется с помощью стрелок на клавиатуре или же через WASD.
+			</div>
+			
+		</div>
+		<div class="open-button">
+			<div class="open-button__text">Показать текст</div>
+		</div>
+		<div class="wrapper__container">
+			<div id="game-board">
+			</div>
+			<div class="game-over">
+				<p>GAME OVER</p>
+				<button class="restart">RESTART</button>
+			</div>
+		</div>
+		<div class="up">
+			<div class="up__score-body">
+				<div class="up__score">Очки: <span>0</span></div>
+			</div>
+			
+		</div>
+	</div>
+	<script src="./js/swiped-events.js"></script>
+	<script src="./js/jquery-3.6.0.min.js"></script>
+	<script src="./js/tile.js" type="module"></script>
+	<script src="./js/script.js" type="module"></script>
+</body>
+</html>
+
