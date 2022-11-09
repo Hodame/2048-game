@@ -1,0 +1,279 @@
+// ИМПОРТИРОВАНИЕ СТИЛЕЙ ОБНУЛЕНИЯ А ТАКЖЕ ПОДКЛЮЧЕНИЕ ШРИФТОВ.
+
+@import "_zerosettings.scss";
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+// СТИЛИ ДЛЯ ОБЕРТКИ ВСЕЙ ВЕРСТКИ.
+
+.wrapper {
+	display: flex;
+	flex-direction: column-reverse;
+	min-height: 100vh;
+	font-family: 'Rubik', sans-serif;
+	justify-content: center;
+	font-weight: 500;
+	flex: 1 1 auto;
+	overflow: hidden;
+	background-color: #c0dfc2;
+	color: rgb(255, 255, 255);
+	font-size: 42px;
+	font-weight: 700;
+	align-items: center	;
+	padding: 30px 0 20px 0;
+	
+}
+
+.wrapper__container {
+	position: relative;
+}
+
+// СТИЛИ ДЛЯ КОНТЕЙНЕРА КОТОРЫЕ БУДЕТ ОГРАНИЧИВАТЬ ШИРИНУ И ЦЕНТРИРОВАТЬ ЕЕ.
+
+[class*="__container"] {
+	max-width: 1330px;
+	margin: 0 auto;
+	padding: 0 15px;
+  }
+
+// СТИЛИ ДЛЯ ИГРОВОГО ПОЛЯ.
+
+#game-board {
+	// --grid-size: 4;
+	// --cell-size: 125px; 
+	// --grid-gap: 10px;
+	display: grid; 
+	grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+	grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+	background-color: #4b6154;
+	border-radius: 10px;
+	gap: var(--grid-gap);
+	padding: var(--grid-gap);
+	position: relative;
+	box-shadow: 0px 17px 38px -12px rgba(0, 0, 0, 0.4);
+}
+
+// СТИЛИ ПОД ОКНО КОГДА ИГРОК ПОТЕРПИТ ПОРАЖЕНИЕ.
+
+.game-over {
+	position: absolute;
+	width: 94.233%;
+	height: 100%;
+	left: 15px;
+	border-radius: 9px;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #c0dfc2ab;
+	transition: 1s  ease-in;
+	opacity: 0;
+	visibility: hidden;
+	P {
+		font-size: 60px;
+		padding-bottom: 100px;
+		color: #000;
+		transform: translateY(-70px) scale(0.4);
+		transition: 1s ease-in-out;
+	}
+	button {
+		margin-top: 20px;
+		position: relative;
+		font-size: 30px;
+		background-color: rgb(190, 243, 190);
+		padding: 10px;
+		color: rgb(0, 0, 0);
+		font-weight: 600;
+		border-radius: 10px;
+		transform: translateY(-40px) scale(0.2);
+		transition: margin-top 1s ease-in-out;
+		transition: 1s ease;
+	}
+}
+
+.game-over.over {
+	opacity: 1;
+	visibility: visible;
+	p {
+		transform: translateY(0px) scale(1);
+	}
+	button {
+		transform: translateY(0px) scale(1);
+	}
+}
+
+// СТИЛИ ДЛЯ КЛЕТОК ИГРОВОГО ПОЛЯ А ТАКЖЕ СТИЛИ ДЛЯ ПЛИТКИ В КОТОРОМ БУДЕТ ЗНАЧЕНИЕ.
+
+  .cell {
+	background-color: #618f74;
+	border-radius: 5px;
+}
+
+.tile {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--cell-size);
+	height: var(--cell-size);
+	border-radius: 5px;
+	top: calc(var(--x) * (var(--cell-size) + var(--grid-gap)) + var(--grid-gap));
+	left: calc(var(--y) * (var(--cell-size) + var(--grid-gap)) + var(--grid-gap));
+	color: hsl(112, 25%, var(--text-lightness));
+	background-color: hsl(112, 50%, var(--background-lightness));
+	animation: show 200ms ease-in-out;
+	transition: 100ms ease-in-out;
+}	
+
+// АНИМАЦИЯ ПОЯВЛЕНИЯ НОВОЙ ПЛИТКИ.
+
+@keyframes show {
+	0% {
+		opacity: 0.5;
+		transform: scale(0);
+	}
+}
+
+// СТИЛИ ДЛЯ КОНТЕЙНЕРА С ТЕКСТОМ КУРСОВОЙ РАБОТЫ.
+
+.about {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	color: #4b6154;
+	text-align: justify;
+	max-width: 800px;
+	padding: 50px 0 0px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__name {
+		font-size: 30px;
+		padding: 0 10px;
+		padding-bottom: 30px;
+	}
+	&__text {
+		max-width: 80%;
+		font-size: 20px;
+		line-height: 135%;
+		font-weight: 400;
+		span {
+			padding-bottom: 40px;
+		}
+	}
+}
+
+// СТИЛИ ДЛЯ ПОЛЯ С ОЧКАМИ И КНОПКОЙ "НОВАЯ ИГРА".
+
+.up {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	font-size: 35px ;
+	&__score-body { 
+		margin-right: 20px;
+		display: flex;
+		align-items: center;
+	}
+	&__score {
+		padding: 10px 50px;
+		border-radius: 6px;
+		background-color: #4b6154;
+		color: #c0dfc2;
+	}
+}
+
+.new-game {
+	&__body {
+		cursor: pointer;
+		padding: 10px 50px;
+		border-radius: 6px;
+		background-color: #4b6154;
+		color: #c0dfc2;
+	}
+}
+
+.open-button {
+	display: none;
+	&__text {
+		font-size: 30px;
+		color: #c0dfc2;
+		margin-top: 50px;
+		background-color: #4b6154;
+		padding: 10px 30px;
+		border-radius: 7px;
+	}
+}
+
+// МЕДИА ЗАПРОСЫ (АДАПТАЦИЯ ПОД РАЗНУЮ ШИРИНУ ЭКРАНА).
+
+@media (max-width:768px) {
+
+	body {
+		overflow: hidden;
+	}
+	.open-button {
+		display: block;
+	}
+	.about {
+		opacity: 0;
+		max-height: 0;
+		transition: 0.6s ease-in-out;
+	}
+	.about.open {
+		opacity: 1;
+		visibility: visible;
+	}
+	body.lock {
+		overflow: initial;
+	}
+	.up {
+		flex-direction: column-reverse;
+		&__score-body {
+			margin: 20px 0 0px 0;
+		}
+	}
+}
+
+@media (max-width:510px) {
+	#game-board {
+		font-size: 26px;
+	}
+}
+
+@media (max-width:425px) {
+	#game-board {
+		font-size: 24px;
+	}
+	.up {
+		font-size: 20px;
+	}
+	.new-game {
+		font-size: 25px;
+	}
+	.game-over {
+		p {
+			font-size: 35px;
+		}
+		button {
+			font-size: 25px;
+		}
+	}
+	.about {
+		&__name {
+			font-size: 20px;
+			padding: 0 10px;
+			padding-bottom: 20px;
+		}
+		&__text {
+			font-size: 15px;
+		}
+	}
+	
+}
+
+@media (max-width:360px) {
+	#game-board {
+		font-size: 20px;
+	}
+}
